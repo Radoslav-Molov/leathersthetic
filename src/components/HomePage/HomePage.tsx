@@ -1,20 +1,36 @@
 import React from "react";
 import { Container } from "@mui/material";
 import Card from "../Card/Card";
+import ImageSlider from "../ImageSlider";
 
 function HomePage() {
   let arr = [1, 2, 3, 4];
   const [categoryCarousel, setCategoryCarousel] = React.useState(false);
 
-  React.useEffect(() => {
-    if (window.screen.availWidth < 900) {
+  window.onresize = function () {
+    if (window.screen.width < 900) {
+      console.log("yes");
       setCategoryCarousel(true);
     } else {
+      console.log("no");
       setCategoryCarousel(false);
     }
-  }, []);
+  };
 
   console.log(categoryCarousel);
+
+  const slides = [
+    { url: "wallet2.webp", title: "beach" },
+    { url: "wallet2.webp", title: "boat" },
+    { url: "wallet2.webp", title: "forest" },
+    { url: "wallet2.webp", title: "city" },
+    { url: "wallet2.webp", title: "italy" },
+  ];
+  const containerStyles = {
+    width: "500px",
+    height: "280px",
+    margin: "0 auto",
+  };
 
   return (
     <>
@@ -33,6 +49,8 @@ function HomePage() {
           </div>
         </div>
       </Container>
+      <p>asdasdas</p>
+      <ImageSlider slides={slides} parentWidth={500} />
       <div id='categories_wrapper'>
         {!categoryCarousel ? (
           <>

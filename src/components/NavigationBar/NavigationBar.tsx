@@ -17,14 +17,11 @@ const pages = [
   "Meet the maker",
   "Contact",
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"]; // cart
 
 function NavigationBar() {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
   const [headerScrolled, setHeaderScrolled] = React.useState<boolean>(false);
   const [windowWidth, setWindowWidth] = React.useState<boolean>(false);
+  const [menuToggled, setMenuToggled] = React.useState<boolean>(false);
 
   window.onscroll = function () {
     if (window.scrollY > 120) {
@@ -42,12 +39,13 @@ function NavigationBar() {
     }
   };
 
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  React.useEffect(() => {
+    window.innerWidth < 900 && setWindowWidth(true);
+    console.log(window.innerWidth);
+  }, []);
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const menuToggle = () => {
+    menuToggled ? setMenuToggled(false) : setMenuToggled(true);
   };
 
   return (
@@ -62,62 +60,27 @@ function NavigationBar() {
           : "navbar_transparent"
       }
     >
-      <Toolbar className='nav_toolbar'>
-        <Box
-          className='navbar_items'
-          sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-        >
-          {pages.map((page) => (
-            <Button
-              className='each_nav_item'
-              key={page}
-              sx={{ my: 0.7, mx: 2.5, color: "black", display: "block" }}
-            >
-              {page}
-            </Button>
-          ))}
-          <Button className='menu'>
-            <img src='menu.png' className='menu_icon' alt='' />
-          </Button>
-        </Box>
-
-        <img className='logo' src='logo.webp' alt='Logo' />
-
-        <Box className='cart_item' sx={{ flexGrow: 0 }}>
-          <Tooltip title='Open Cart Items'>
-            <Button
-              key='Cart'
-              className='each_nav_item'
-              sx={{ my: 2, color: "black", display: "block" }}
-              onClick={handleOpenUserMenu}
-            >
-              Cart (0)
-            </Button>
-          </Tooltip>
-          <Menu
-            sx={{ mt: "45px" }}
-            id='menu-appbar'
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
+      <div className={menuToggled ? "navbar_items_menu" : "navbar_items"}>
+        {pages.map((page) => (
+          <a
+            href='#'
+            className={menuToggled ? "each_nav_item_menu" : "each_nav_item"}
+            key={page}
           >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign='center'>{setting}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
-      </Toolbar>
+            {page}
+          </a>
+        ))}
+        <a className='menu' href='javascript:void(0);' onClick={menuToggle}>
+          <img src='menu.png' className='menu_icon' alt='' />
+        </a>
+      </div>
+      <div className='logo_wrapper'>
+        <img
+          className={menuToggled ? "logo_menu" : "logo"}
+          src='logo.webp'
+          alt='Logo'
+        />
+      </div>
     </div>
   );
 }
