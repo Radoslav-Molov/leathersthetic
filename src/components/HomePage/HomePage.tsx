@@ -19,18 +19,18 @@ function HomePage() {
 
   console.log(categoryCarousel);
 
-  const slides = [
-    { url: "wallet2.webp", title: "beach" },
-    { url: "wallet2.webp", title: "boat" },
-    { url: "wallet2.webp", title: "forest" },
-    { url: "wallet2.webp", title: "city" },
-    { url: "wallet2.webp", title: "italy" },
-  ];
-  const containerStyles = {
-    width: "500px",
-    height: "280px",
-    margin: "0 auto",
-  };
+  // const slides = [
+  //   { url: "wallet2.webp", title: "beach" },
+  //   { url: "wallet2.webp", title: "boat" },
+  //   { url: "wallet2.webp", title: "forest" },
+  //   { url: "wallet2.webp", title: "city" },
+  //   { url: "wallet2.webp", title: "italy" },
+  // ];
+  // const containerStyles = {
+  //   width: "500px",
+  //   height: "280px",
+  //   margin: "0 auto",
+  // };
 
   return (
     <>
@@ -49,8 +49,7 @@ function HomePage() {
           </div>
         </div>
       </Container>
-      <p>asdasdas</p>
-      <ImageSlider slides={slides} parentWidth={500} />
+      {/* <ImageSlider slides={slides} parentWidth={500} /> */}
       <div id='categories_wrapper'>
         {!categoryCarousel ? (
           <>

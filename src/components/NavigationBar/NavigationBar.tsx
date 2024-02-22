@@ -1,22 +1,6 @@
 import * as React from "react";
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Typography,
-  Menu,
-  Button,
-  Tooltip,
-  MenuItem,
-} from "@mui/material";
 
-const pages = [
-  "Home",
-  "Collection",
-  "How its made",
-  "Meet the maker",
-  "Contact",
-];
+const pages = ["Home", "Collection", "How its made", "About", "Contact"];
 
 function NavigationBar() {
   const [headerScrolled, setHeaderScrolled] = React.useState<boolean>(false);
@@ -24,7 +8,7 @@ function NavigationBar() {
   const [menuToggled, setMenuToggled] = React.useState<boolean>(false);
 
   window.onscroll = function () {
-    if (window.scrollY > 120) {
+    if (window.scrollY > 70) {
       setHeaderScrolled(true);
     } else {
       setHeaderScrolled(false);
@@ -77,7 +61,7 @@ function NavigationBar() {
       <div className='logo_wrapper'>
         <img
           className={menuToggled ? "logo_menu" : "logo"}
-          src='logo.webp'
+          src='black-logo.png'
           alt='Logo'
         />
       </div>
