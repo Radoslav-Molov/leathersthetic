@@ -13,8 +13,8 @@ function App() {
       <NavigationBar />
       <Slider />
       <HomePage />
-      {/* <About /> */}
-      {/* <FAQ /> */}
+      <About />
+      <FAQ />
       <Footer />
     </div>
   );
