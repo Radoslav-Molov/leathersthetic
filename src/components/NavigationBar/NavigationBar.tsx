@@ -1,6 +1,11 @@
 import * as React from "react";
 
-const pages = ["Home", "Collection", "How its made", "About"];
+const pages = [
+  { name: "Home", href: "/" },
+  { name: "Collections", href: "collections" },
+  { name: "How its made", href: "how-its-made" },
+  { name: "About", href: "about" },
+];
 
 function NavigationBar() {
   const [headerScrolled, setHeaderScrolled] = React.useState<boolean>(false);
@@ -51,11 +56,11 @@ function NavigationBar() {
       <div className={menuToggled ? "navbar_items_menu" : "navbar_items"}>
         {pages.map((page) => (
           <a
-            href='#'
+            href={page.href}
             className={menuToggled ? "each_nav_item_menu" : "each_nav_item"}
-            key={page}
+            key={page.name}
           >
-            {page}
+            {page.name}
           </a>
         ))}
         <a

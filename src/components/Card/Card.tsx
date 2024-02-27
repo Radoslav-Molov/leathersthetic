@@ -3,7 +3,7 @@ import React from "react";
 function Card() {
   return (
     <div className='product_wrapper'>
-      <a href=''>
+      <a href='/details'>
         <img className='product_img' src='wallet.webp' alt='' />
       </a>
       <p className='product_info'>
